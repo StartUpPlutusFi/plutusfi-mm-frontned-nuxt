@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { Config } from "tailwindcss";
+
+export default <Config>{
   content: [
     `components/**/*.{vue,js}`,
     `layouts/**/*.vue`,
@@ -10,7 +11,11 @@ module.exports = {
     `app.{js,ts,vue}`,
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "plutusfi-login-bg-color": "#485A6A",
+      },
+    },
   },
   plugins: [],
 };
