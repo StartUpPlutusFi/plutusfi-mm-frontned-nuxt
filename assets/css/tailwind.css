@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    #form_wrapper {
+        @apply absolute z-20 bg-slate-500 w-1/4 h-1/2 drop-shadow-md rounded flex flex-col items-center justify-center
+    }
+}
