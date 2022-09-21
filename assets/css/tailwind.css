@@ -8,7 +8,7 @@
   }
 
   .input-text {
-    @apply bg-transparent rounded-md px-3 py-2 outline-none text-gray-200 placeholder:font-normal focus:border-gray-200 focus:placeholder:text-gray-200 transition-colors;
+    @apply w-full bg-transparent rounded-md px-3 py-2 outline-none text-gray-200 placeholder:font-normal focus:border-gray-200 focus:placeholder:text-gray-200 transition-colors;
     border: 1px solid #8d8d8d;
   }
   .input-text::placeholder {
