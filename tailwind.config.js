@@ -13,6 +13,8 @@ module.exports = {
     extend: {
       colors: {
         "plutusfi-login-bg-color": "#485A6A",
+        "switcher-black-bg-color": "#3c3c3c",
+        "switcher-blue-contrast-color": "#68bad4"
       },
     },
   },
