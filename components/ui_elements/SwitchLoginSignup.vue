@@ -6,7 +6,7 @@ const handleCheckedState = () => {
 </script>
 
 <template>
-  <div class="absolute z-20 top-5 right-1/4">
+  <div class="absolute z-20 top-5 md:top-5 right-3 md:right-20">
     <div class="switcher_wrapper bg-switcher-black-bg-color">
       <input type="checkbox" name="switcher" id="switcher" v-model="checked" />
       <div class="component_swap_area">
