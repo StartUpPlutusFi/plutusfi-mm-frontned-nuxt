@@ -1,6 +1,68 @@
+<script setup lang="ts">
+const wasScrolled = ref<boolean>(false);
+const scrolledArea = ref(null);
+
+const EmitReciver = () => {
+  wasScrolled.value = !wasScrolled.value;
+  if (typeof scrolledArea.value !== null) {
+    if (wasScrolled.value) {
+      scrolledArea.value.scrollTo({
+        top: 0,
+        left: scrolledArea.value.scrollWidth,
+        behavior: "smooth",
+      });
+    } else {
+      scrolledArea.value.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
+  }
+};
+const handleLogin = () => {};
+</script>
 <template>
   <form action="" class="flex flex-col items-center justify-around h-full">
-    <h1 class="text-white text-2xl font-bold">Welcome Back!</h1>
-    <ui-elements-text-input placeholder="Username" type="text"/>
+    <div
+      class="flex flex-col justify-center w-full items-center text-white mb-12"
+    >
+      <h1 class="text-white lg:text-display-6 text-2xl font-normal">
+        Welcome Back!
+      </h1>
+      <p>make login again!</p>
+    </div>
+
+    <div
+      ref="scrolledArea"
+      id="row-input"
+      class="max-w-full overflow-hidden gap-12 md:w-60 w-1/2"
+    >
+      <ui-elements-text-input placeholder="Username" type="text" />
+      <ui-elements-text-input placeholder="Password" type="password" />
+    </div>
   </form>
+  <div class="flex justify-between items-center md:w-60 mt-5 m-auto">
+    <ui-elements-button v-if="!wasScrolled" text="Next" @roll="EmitReciver()" />
+    <ui-elements-button v-else text="Login" />
+    <a
+      href="#"
+      v-if="!wasScrolled"
+      class="text-gray-400 hover:text-gray-200 transition-colors whitespace-nowrap mx-5"
+      >forgot password?
+    </a>
+    <a
+      href="#"
+      v-else
+      class="text-gray-400 hover:text-gray-200 transition-colors mx-5"
+      @click="EmitReciver()"
+      >back
+    </a>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+#row-input {
+  display: flex;
+}
+</style>
