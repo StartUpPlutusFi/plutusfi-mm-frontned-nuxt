@@ -59,6 +59,18 @@ const handleLogin = () => {};
       >back
     </a>
   </div>
+  <div class="flex flex-col items-center mt-10 text-white">
+    <div class="flex justify-center items-center gap-2 w-full">
+      <div class="line"></div>
+      <label>or</label>
+      <div class="line"></div>
+    </div>
+    <div class="grid grid-cols-3 justify-items-center w-full mt-10">
+      <a href="#">Google</a>
+      <a href="#">Facebook</a>
+      <a href="#">Github</a>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
