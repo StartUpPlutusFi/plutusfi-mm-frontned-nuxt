@@ -39,69 +39,59 @@ const handleCheckedState = () => {
     border-radius: 30px;
     cursor: pointer;
   }
-}
-.switcher_wrapper input[type="checkbox"] {
-  display: none;
-}
 
-.switcher_wrapper
-  input[type="checkbox"]:checked
-  ~ .component_swap_area
-  label:nth-child(2) {
-  color: #68bad4 !important;
-}
+  input[type="checkbox"] {
+    display: none;
+  }
 
-.switcher_wrapper
-  input[type="checkbox"]:checked
-  ~ .component_swap_area
-  .toggler {
-  left: 50% !important;
-}
+  input[type="checkbox"]:checked ~ .component_swap_area label:nth-child(2) {
+    color: #68bad4 !important;
+  }
 
-.switcher_wrapper
   input[type="checkbox"]:not(:checked)
-  ~ .component_swap_area
-  label:nth-child(3) {
-  color: #68bad4 !important;
-}
+    ~ .component_swap_area
+    label:nth-child(3) {
+    color: #68bad4 !important;
+  }
 
-.switcher_wrapper .component_swap_area {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  /* background-color: bisque; */
-}
+  input[type="checkbox"]:checked ~ .component_swap_area .toggler {
+    left: 50% !important;
+  }
 
-.switcher_wrapper .component_swap_area .toggler {
-  width: 50%;
-  height: 38px;
-  position: absolute;
-  top: 1px;
-  left: 0;
-  border-radius: 30px;
-  background-color: #68bad4;
-  transition: left 0.3s;
-}
-.switcher_wrapper .component_swap_area label {
-  z-index: 10;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  transition: color 0.3s;
-}
+  .component_swap_area {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 
-.switcher_wrapper .component_swap_area label:nth-child(2) {
-  margin-left: 13px !important;
-}
+    .toggler {
+      width: 50%;
+      height: 38px;
+      position: absolute;
+      top: 1px;
+      left: 0;
+      border-radius: 30px;
+      background-color: #68bad4;
+      transition: left 0.3s;
+    }
 
-.switcher_wrapper .component_swap_area label:nth-child(3) {
-  margin-right: 8px !important;
-}
+    label {
+      z-index: 10;
+      color: #fff;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
 
-.toggler.checked {
-  left: 50% !important;
+    label:nth-child(2) {
+      margin-left: 13px !important;
+    }
+
+    label:nth-child(3) {
+      margin-right: 8px !important;
+    }
+  }
 }
 </style>
