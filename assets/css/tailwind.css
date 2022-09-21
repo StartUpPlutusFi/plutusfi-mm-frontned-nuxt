@@ -12,10 +12,26 @@
     @apply w-80 bg-transparent rounded-md px-3 py-2 outline-none text-gray-200 placeholder:font-normal focus:border-gray-200 focus:placeholder:text-gray-200 transition-colors;
     border: 1px solid #8d8d8d;
   }
+  
   .input-text::placeholder {
     color: #8d8d8d;
   }
+
   .btn {
-    @apply w-fit px-4 py-2 bg-gray-400 rounded-md text-gray-300 hover:bg-gray-300 hover:text-gray-400 transition-colors
+    @apply w-fit px-4 py-2 bg-gray-400 rounded-md text-gray-300 hover:bg-gray-300 hover:text-gray-400 transition-colors;
+  }
+
+  .btn-primary {
+    background: #498aae;
+    @apply text-gray-400;
+  }
+
+  .btn-primary:hover {
+    background: #31a1e0;
+    @apply text-gray-200;
+  }
+
+  .btn-expand {
+    @apply w-full
   }
 }
