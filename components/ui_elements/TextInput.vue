@@ -1,10 +1,8 @@
 <script setup lang="ts">
-const placeholder: string = ""
-
-const type:string = ""
+const props = defineProps(["placeholder", "type"])
 </script>
 <template>
-    <input :type="type" class="input-text" :placeholder="placeholder">
+    <input :type="props.type" class="input-text" :placeholder="props.placeholder">
 </template>
 
 <style lang="scss" scoped>
