@@ -7,10 +7,10 @@ const handleCheckedState = () => {
 
 <template>
   <div class="absolute z-20 top-5 right-1/4">
-    <div class="switcher_wrapper">
+    <div class="switcher_wrapper bg-switcher-black-bg-color">
       <input type="checkbox" name="switcher" id="switcher" v-model="checked" />
       <div class="component_swap_area">
-        <div class="toggler"></div>
+        <div class="toggler bg-switcher-blue-contrast-color"></div>
         <label for="">login</label>
         <label for="">signup</label>
       </div>
@@ -22,7 +22,6 @@ const handleCheckedState = () => {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 .switcher_wrapper {
-  background-color: #3c3c3c;
   border-radius: 30px;
   width: 140px;
   height: 40px;
@@ -73,7 +72,6 @@ const handleCheckedState = () => {
       top: 1px;
       left: 0;
       border-radius: 30px;
-      background-color: #68bad4;
       transition: left 0.3s;
     }
 
