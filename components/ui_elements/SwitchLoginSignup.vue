@@ -1,7 +1,24 @@
 <script setup lang="ts">
 const checked = ref<boolean>(false);
+const router = useRouter();
+const route = useRoute();
+
+onBeforeMount(() => {
+  if (route.fullPath === "/signup") {
+    checked.value = true;
+  } else {
+    checked.value = false;
+  }
+});
+
 const handleCheckedState = () => {
   checked.value = !checked.value;
+
+  if (checked.value) {
+    router.push("/signup");
+  } else {
+    router.push("/login");
+  }
 };
 </script>
 
