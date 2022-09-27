@@ -1,10 +1,18 @@
 <script setup lang="ts">
-const props = defineProps(["placeholder", "type"])
+const props = defineProps(["placeholder", "type", "value"]);
+const emit = defineEmits(['update:value'])
+
+const value = ref(props.value)
 </script>
+
 <template>
-    <input :type="props.type" class="input-text" :placeholder="props.placeholder">
+  <input
+    :type="props.type"
+    class="input-text"
+    :placeholder="props.placeholder"
+    :value="props.value"
+    @input="$emit('update:value', $event.target.value)"
+  />
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
