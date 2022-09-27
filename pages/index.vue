@@ -1,4 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+definePageMeta({
+  loginRequired: true,
+  middleware: ["is-authenticated"],
+});
+</script>
 
 <template>
   <div>
