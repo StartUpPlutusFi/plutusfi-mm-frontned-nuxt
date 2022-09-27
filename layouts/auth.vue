@@ -1,6 +1,8 @@
 <template>
   <div class="container max-w-full bg-plutusfi-login-bg-color flex flex-col items-center justify-center">
-    <img src="~/assets/svg/logo-with-text.svg" alt="logo" class="absolute z-20 top-5 left-5 h-8">
+    <nuxt-link to="/">
+      <img src="~/assets/svg/logo-with-text.svg" alt="logo" class="absolute z-20 top-5 left-5 h-8">
+    </nuxt-link>
     <ui-elements-switch-login-signup/>
     <div
       id="bg_tiles"
