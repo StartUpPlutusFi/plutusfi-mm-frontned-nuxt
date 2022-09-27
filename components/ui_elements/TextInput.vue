@@ -12,6 +12,7 @@ const value = ref(props.value)
     :placeholder="props.placeholder"
     :value="props.value"
     @input="$emit('update:value', $event.target.value)"
+    tabindex="-1"
   />
 </template>
 
