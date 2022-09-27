@@ -1,18 +1,24 @@
 import { defineStore } from "pinia";
 
+interface AuthCredentials {
+  access: string;
+  refresh: string;
+}
+
 export const useAuthStore = defineStore("auth", {
   state: () => {
     return {
-      token: "",
+      auth: null as AuthCredentials | null,
     };
   },
   getters: {
-    getToken: (state) => state.token,
+    getAccess: (state) => state.auth?.access,
+    getRefresh: (state) => state.auth?.refresh,
   },
 
   actions: {
-    setToken(token: string) {
-      this.token = token;
+    setAuthCredentials(auth: AuthCredentials) {
+      this.auth = auth;
     },
   },
   persist: true,
