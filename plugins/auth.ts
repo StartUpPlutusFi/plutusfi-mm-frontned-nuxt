@@ -1,4 +1,4 @@
-import { useAuthStore } from "~~/storage/auth";
+import { useAuthStore } from "~~/storage/auth/auth";
 import { createToast } from "mosha-vue-toastify";
 
 
