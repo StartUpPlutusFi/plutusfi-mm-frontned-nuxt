@@ -2,7 +2,6 @@
 import { createToast } from "mosha-vue-toastify";
 import { LoginAPI } from "~/server/auth/login";
 import { useAuthStore } from "~~/storage/auth/auth";
-import { AuthCredentials } from "~~/storage/auth/interfaces";
 import { useLoader } from "~~/storage/loader";
 
 const loader = useLoader();
