@@ -10,7 +10,7 @@ export interface Credentials {
 }
 export const LoginAPI = async (
   credentiais: FormData
-): Promise<{ data: AuthCredentials | null }> => {
+): Promise<AuthCredentials | null> => {
   const { data } = await API.post("/auth/api/token/login/", credentiais).catch(
     (error: AxiosError) => {
       let { detail }: string = error.response.data;
