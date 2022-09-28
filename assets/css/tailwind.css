@@ -39,4 +39,8 @@
     @apply w-full bg-gray-400 rounded;
     height: 2px
   }
+
+  .app-link {
+    @apply text-gray-300 hover:text-gray-50 transition-colors
+  }
 }
