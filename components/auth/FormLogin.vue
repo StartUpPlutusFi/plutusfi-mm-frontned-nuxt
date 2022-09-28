@@ -45,8 +45,16 @@ const handleLogin = () => {};
       id="row-input"
       class="max-w-full overflow-hidden gap-12 md:w-60 w-1/2"
     >
-      <ui-elements-text-input placeholder="Username" type="text" />
-      <ui-elements-text-input placeholder="Password" type="password" />
+      <ui-elements-text-input
+        placeholder="Username"
+        type="text"
+        v-model:value="credentials.username"
+      />
+      <ui-elements-text-input
+        placeholder="Password"
+        type="password"
+        v-model:value="credentials.password"
+      />
     </div>
   </form>
   <div class="flex justify-between items-center md:w-60 mt-5 m-auto">
