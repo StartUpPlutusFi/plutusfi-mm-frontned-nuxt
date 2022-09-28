@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { LoginAPI } from "~/server/auth/login";
 import { useAuthStore } from "~~/storage/auth/auth";
+import { AuthCredentials } from "~~/storage/auth/interfaces";
 import { useLoader } from "~~/storage/loader";
 
 const loader = useLoader();
@@ -9,7 +10,7 @@ const credentials = ref<FormData>({ username: "", password: "" });
 const wasScrolled = ref<boolean>(false);
 const scrolledArea = ref(null);
 
-const EmitReciver = () => {
+const SideScrollForm = () => {
   wasScrolled.value = !wasScrolled.value;
   if (typeof scrolledArea.value !== null) {
     if (wasScrolled.value) {
@@ -27,7 +28,18 @@ const EmitReciver = () => {
     }
   }
 };
-const handleLogin = () => {};
+const handleLogin = async () => {
+  try {
+    loader.setLoading(true);
+    const data = await LoginAPI(credentials.value);
+    
+    if (data) {
+      auth.setAuthCredentials(data);
+    }
+  } finally {
+    loader.setLoading(false);
+  }
+};
 </script>
 <template>
   <form action="" class="flex flex-col items-center justify-around h-full">
@@ -58,8 +70,8 @@ const handleLogin = () => {};
     </div>
   </form>
   <div class="flex justify-between items-center md:w-60 mt-5 m-auto">
-    <ui-elements-button v-if="!wasScrolled" text="Next" @roll="EmitReciver()" />
-    <ui-elements-button v-else text="Login" />
+    <ui-elements-button v-if="!wasScrolled" text="Next" @roll="SideScrollForm()" />
+    <ui-elements-button v-else text="Login" @roll="handleLogin()" />
     <a
       href="#"
       v-if="!wasScrolled"
@@ -70,7 +82,7 @@ const handleLogin = () => {};
       href="#"
       v-else
       class="text-gray-400 hover:text-gray-200 transition-colors mx-5"
-      @click="EmitReciver()"
+      @click="SideScrollForm()"
       >back
     </a>
   </div>
