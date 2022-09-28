@@ -43,4 +43,15 @@
   .app-link {
     @apply text-gray-300 hover:text-gray-50 transition-colors
   }
+
+  .sandwich-menu {
+    @apply md:hidden block flex flex-col gap-1
+  }
+
+  .sandwich-menu > div {
+    @apply bg-gray-400
+  }
+  .sandwich-menu:hover > div {
+    @apply bg-gray-100
+  }
 }
