@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createToast } from "mosha-vue-toastify";
 import { LoginAPI } from "~/server/auth/login";
 import { useAuthStore } from "~~/storage/auth/auth";
 import { AuthCredentials } from "~~/storage/auth/interfaces";
@@ -35,6 +36,11 @@ const handleLogin = async () => {
     
     if (data) {
       auth.setAuthCredentials(data);
+      navigateTo("/")
+      createToast("Login Success", {
+        type: "success",
+        position: "top-center"
+      })
     }
   } finally {
     loader.setLoading(false);
