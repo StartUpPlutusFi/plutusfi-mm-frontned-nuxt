@@ -12,5 +12,10 @@ export default defineNuxtPlugin(() => {
       });
       return navigateTo("/login")
     }
-  }, {})
+    },
+    {}
+  ),
+    addRouteMiddleware("is-unauthenticated", (to) => {
+      const auth = useAuthStore();
+    });
 });
