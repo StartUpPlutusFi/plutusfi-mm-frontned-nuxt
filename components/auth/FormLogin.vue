@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { LoginAPI } from "~/server/auth/login";
+import { useAuthStore } from "~~/storage/auth/auth";
+import { useLoader } from "~~/storage/loader";
+
+const loader = useLoader();
+const auth = useAuthStore();
+const credentials = ref<FormData>({ username: "", password: "" });
 const wasScrolled = ref<boolean>(false);
 const scrolledArea = ref(null);
 
