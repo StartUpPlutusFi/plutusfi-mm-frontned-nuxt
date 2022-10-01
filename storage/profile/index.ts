@@ -25,5 +25,8 @@ export const useProfile = defineStore("profile", {
         this.profile = data;
       }
     },
+    clear() {
+      this.profile = null
+    }
   },
 });
