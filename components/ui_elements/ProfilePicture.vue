@@ -4,7 +4,7 @@ import { useProfile } from "~~/storage/profile";
 const apiURL = import.meta.env?.VITE_BACKEND_BASE_URL;
 const profile = useProfile();
 
-const file = ref<File>()
+const file = ref<File>();
 
 const picture = ref<string>(`url("/defaul-profile-pic.png")`);
 
@@ -17,15 +17,20 @@ onBeforeMount(async () => {
   await profile.getProfile();
 });
 
+const MountForm = (): FormData => {
+  const form = new FormData();
+  form.append("picture", file.value);
+  return form;
+};
+
 const onFileChange = (e: Event) => {
-    console.log(e.target.files)
-}
+  file.value = e.target.files[0];
+  profile.updateProfileState(MountForm());
+};
 
 const clickOnFile = () => {
-    file.value.click()
-}
-
-
+  file.value.click();
+};
 </script>
 
 <template>
@@ -35,12 +40,22 @@ const clickOnFile = () => {
     style="background-position: center; background-size: cover"
   >
     <div
-    @click="clickOnFile"
+      @click="clickOnFile"
       class="w-full h-full bg-black rounded-full opacity-0 justify-center items-center hover:opacity-50 flex cursor-pointer"
     >
-      <img src="/icon/photo-camera-interface-symbol-for-button.png" width="20" height="20" />
+      <img
+        src="/icon/photo-camera-interface-symbol-for-button.png"
+        width="20"
+        height="20"
+      />
     </div>
-    <input @change="onFileChange" ref="file" type="file" class="hidden" accept="image/*"/>
+    <input
+      @change="onFileChange"
+      ref="file"
+      type="file"
+      class="hidden"
+      accept="image/*"
+    />
   </div>
 </template>
 
