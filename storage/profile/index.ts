@@ -1,3 +1,4 @@
+import { UpdatedProfile } from "./../../server/auth/profile";
 import { defineStore } from "pinia";
 import { GetProfileInfo } from "~~/server/auth/profile";
 import { ProfileInfo } from "./interfaces";
@@ -14,6 +15,12 @@ export const useProfile = defineStore("profile", {
   actions: {
     async getProfile() {
       const data = await GetProfileInfo();
+      if (data) {
+        this.profile = data;
+      }
+    },
+    async updateProfileState(body: FormData) {
+      const data = await UpdatedProfile(body);
       if (data) {
         this.profile = data;
       }
