@@ -4,15 +4,14 @@ import { ProfileInfo } from "./../../storage/profile/interfaces";
 import { useAuthStore } from "~~/storage/auth/auth";
 import API from "../api";
 
-const auth = useAuthStore();
-
-const options: AxiosRequestConfig = {
-  headers: {
-    Authorization: `Bearer ${auth.getAccess}`,
-  },
-};
-
 export const GetProfileInfo = async (): Promise<ProfileInfo | null> => {
+  const auth = useAuthStore();
+
+  const options: AxiosRequestConfig = {
+    headers: {
+      Authorization: `Bearer ${auth.getAccess}`,
+    },
+  };
   const { data } = await API.get("/auth/api/token/profile/", options).catch(
     (error: AxiosError) => {
       createToast(error, {
@@ -24,14 +23,23 @@ export const GetProfileInfo = async (): Promise<ProfileInfo | null> => {
   return data;
 };
 
-export const UpdatedProfile = async (body: FormData): Promise<ProfileInfo | null> => {
+export const UpdatedProfile = async (
+  body: FormData
+): Promise<ProfileInfo | null> => {
+  const auth = useAuthStore();
+
+  const options: AxiosRequestConfig = {
+    headers: {
+      Authorization: `Bearer ${auth.getAccess}`,
+    },
+  };
   const { data } = await API.put(
     "/auth/api/token/profile/update/",
     body,
     options
   ).catch((error: AxiosError) => {
-    createToast(error.response.data, {type: "danger"})
+    createToast(error.response.data, { type: "danger" });
   });
 
-  return data
+  return data;
 };
