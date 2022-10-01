@@ -54,4 +54,8 @@
   .sandwich-menu:hover > div {
     @apply bg-gray-100
   }
+
+  .list-link {
+    @apply hover:text-gray-100 transition-colors p-1 w-full cursor-pointer
+  }
 }
