@@ -15,7 +15,8 @@ export const GetProfileInfo = async (): Promise<ProfileInfo | null> => {
     createToast(error, {
       type: "danger",
     });
-  });
+    }
+  );
 
   return data;
 };
