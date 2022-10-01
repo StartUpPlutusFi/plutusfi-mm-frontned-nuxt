@@ -6,8 +6,8 @@ const navRoutes: { to: string; text: string }[] = [
 ];
 </script>
 <template>
-  <div class="w-full h-12 p-4 flex justify-between items-cente">
-    <div>
+  <div class="w-full h-fit p-4 flex justify-between items-center">
+    <div class="flex justify-between items-cente">
       <nuxt-link to="/">
         <img
           src="@/assets/img/logo-with-text.svg"
@@ -24,11 +24,13 @@ const navRoutes: { to: string; text: string }[] = [
       </ul>
     </div>
     <div class="flex gap-5">
-        <div>
-            <p>username</p>
+        <div class="md:block hidden">
+            <ui-elements-user-card />
         </div>
-        <div>
-            menu
+        <div class="sandwich-menu">
+            <div class="h-1 w-6"></div>
+            <div class="h-1 w-6"></div>
+            <div class="h-1 w-6"></div>
         </div>
     </div>
   </div>
