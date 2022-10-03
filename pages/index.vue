@@ -50,7 +50,7 @@ const componentIs = computed(() => app.selectComponent(componentName.value))
         </li>
       </ul>
     </div>
-    <div class="grow flex justify-center items-center w-full bg-gray-600">
+    <div class="grow w-full">
       <component :is="componentIs" />
     </div>
   </div>
