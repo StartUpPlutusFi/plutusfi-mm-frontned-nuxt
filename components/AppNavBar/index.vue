@@ -7,12 +7,19 @@ const navbar = useNavBar();
 
 onBeforeMount(() => {
   navbar.addRoutes(urlpatterns);
+  navbar.setActiveRoute(route.fullPath);
 });
 
-watch(navbar, () => {
-  navbar.setActiveRoute(route.fullPath)
+watch(route, () => {
   switch (route.fullPath) {
     case "/":
+      navbar.setActiveRoute(route.fullPath);
+      break;
+    case "/dashboard":
+      navbar.setActiveRoute(route.fullPath);
+      break;
+    case "/exchange":
+      navbar.setActiveRoute(route.fullPath);
       break;
   }
 });
@@ -39,7 +46,7 @@ watch(navbar, () => {
             :to="route.path"
             v-text="route.text"
             class="app-link"
-            :class="{'text-white': route.active}"
+            :class="{ 'text-white': route.active }"
           ></NuxtLink>
           <div v-if="route.active" class="indicador"></div>
         </li>
