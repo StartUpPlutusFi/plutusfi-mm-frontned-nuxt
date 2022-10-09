@@ -58,4 +58,8 @@
   .list-link {
     @apply hover:text-gray-100 transition-colors p-1 w-full cursor-pointer
   }
+
+  .grid-auto-trader {
+    @apply grow w-full grid gap-4 sm:grid-cols-2 xl:grid-cols-4 p-5 place-items-center
+  }
 }
