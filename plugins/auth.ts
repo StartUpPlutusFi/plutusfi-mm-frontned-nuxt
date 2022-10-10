@@ -23,5 +23,8 @@ export default defineNuxtPlugin(() => {
   ),
     addRouteMiddleware("is-unauthenticated", (to) => {
       const auth = useAuthStore();
+      if (!to.meta.loginRequired && auth.getAccess) {
+        return navigateTo("/");
+      }
     });
 });
