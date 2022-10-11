@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ConcreteComponent } from "vue";
-import { AutoTrader } from "~~/.nuxt/components";
+// import { AutoTrader } from "~~/.nuxt/components";
 
 definePageMeta({
   loginRequired: true,

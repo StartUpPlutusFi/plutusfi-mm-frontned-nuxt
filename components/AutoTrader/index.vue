@@ -1,31 +1,70 @@
 <script setup lang="ts">
-const gridLayout = ref<HTMLSelectElement>()
+import { useModalApiCredential } from "~~/storage/modals/apikey";
+
+const modal = useModalApiCredential();
+const showMenuOptions = ref<boolean>(false);
+const gridLayout = ref<HTMLSelectElement>();
 const changeLayout = () => {
-    console.log(gridLayout.value.value);
-    
-}
+  console.log(gridLayout.value.value);
+};
+
+const showModal = () => {
+  modal.setShow(true);
+};
 </script>
 <template>
   <div class="container mx-auto">
     <h1 class="text-display-6 text-gray-300 ml-10 font-semibold">
       Auto Trader
     </h1>
-    <div class="command-panel flex w-full justify-center gap-2">
-      <button class="btn">add</button>
+    <div class="command-panel flex w-full justify-center gap-2 px-5">
+      <button class="btn">Register API Credentils</button>
+      <button class="btn">New bot</button>
       <button class="btn">stop all open orders</button>
     </div>
     <div class="content">
-        <div class="w-full flex justify-end">
-            <select ref="gridLayout" @change="changeLayout" name="gridlayout" id="id_grid_layout">
-                <option value="default">Auto</option>
-                <option value="2">2 cols</option>
-                <option value="4">4 cols</option>
-            </select>
+      <div class="w-full flex justify-end">
+        <div class="relative">
+          <button
+            @click="showMenuOptions = !showMenuOptions"
+            class="text-gray-400 mr-4 hover:text-gray-100 transition-colors"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
+              />
+            </svg>
+          </button>
+          <ul
+            v-show="showMenuOptions"
+            class="list-none absolute z-10 bg-gray-400 p-2 right-5 top-8 rounded-md"
+          >
+            <li
+              @click="showModal(); showMenuOptions = false;"
+              class="whitespace-nowrap text-gray-700 hover:text-gray-900 cursor-pointer"
+            >
+              API Credentials
+            </li>
+          </ul>
         </div>
-        <div class="grid-auto-trader">
-            <auto-trader-card-bot v-for="n in 12"/>
-        </div>
+        <select
+          class="hidden"
+          ref="gridLayout"
+          @change="changeLayout"
+          name="gridlayout"
+          id="id_grid_layout"
+        >
+          <option value="default">Auto</option>
+          <option value="2">2 cols</option>
+          <option value="4">4 cols</option>
+        </select>
+      </div>
+      <div class="grid-auto-trader">
+        <auto-trader-card-bot v-for="n in 12" />
+      </div>
     </div>
+    <register-api-key-side-modal />
   </div>
 </template>
 
