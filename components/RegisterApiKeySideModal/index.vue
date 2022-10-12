@@ -83,7 +83,7 @@ const overlayClose = (e: Event) => {
     @click="overlayClose"
   >
     <div
-      class="w-full h-screen z-20 md:w-fit p-4 bg-gray-700 text-gray-200 fixed right-0 top-0"
+      class="w-full h-screen z-20 md:w-fit p-4 bg-gray-700 text-gray-200 fixed right-0 top-0 flex flex-col"
     >
       <button
         @click="close()"
@@ -167,6 +167,7 @@ const overlayClose = (e: Event) => {
         </button>
         <button @click="clearForm()" class="btn w-full">Clear</button>
       </div>
+      <api-credential-list />
     </div>
   </div>
 </template>
