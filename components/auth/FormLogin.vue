@@ -32,17 +32,23 @@ const handleLogin = async () => {
   try {
     loader.setLoading(true);
     const data = await LoginAPI(credentials.value);
-    
+
     if (data) {
       auth.setAuthCredentials(data);
-      navigateTo("/")
+      navigateTo("/");
       createToast("Login Success", {
         type: "success",
-        position: "top-center"
-      })
+        position: "top-center",
+      });
     }
   } finally {
     loader.setLoading(false);
+  }
+};
+
+const onKeyEnter = (e: Event) => {
+  if (e.keyCode === 13) {
+    handleLogin();
   }
 };
 </script>
@@ -71,11 +77,16 @@ const handleLogin = async () => {
         placeholder="Password"
         type="password"
         v-model:value="credentials.password"
+        @keypress="onKeyEnter"
       />
     </div>
   </form>
   <div class="flex justify-between items-center md:w-60 mt-5 m-auto">
-    <ui-elements-button v-if="!wasScrolled" text="Next" @roll="SideScrollForm()" />
+    <ui-elements-button
+      v-if="!wasScrolled"
+      text="Next"
+      @roll="SideScrollForm()"
+    />
     <ui-elements-button v-else text="Login" @roll="handleLogin()" />
     <a
       href="#"
