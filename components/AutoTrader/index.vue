@@ -18,7 +18,6 @@ const showModal = () => {
       Auto Trader
     </h1>
     <div class="command-panel flex w-full justify-center gap-2 px-5">
-      <button class="btn">Register API Credentils</button>
       <button class="btn">New bot</button>
       <button class="btn">stop all open orders</button>
     </div>
@@ -67,17 +66,15 @@ const showModal = () => {
         <auto-trader-card-bot v-for="n in 12" />
       </div>
     </div>
-    <transition name="slide-fade">
-      <register-api-key-side-modal />
-    </transition>
+    <teleport to="body">
+      <transition name="slide-fade">
+        <register-api-key-side-modal />
+      </transition>
+    </teleport>
   </div>
 </template>
 
 <style lang="scss" scoped>
-/*
-  Enter and leave animations can use different
-  durations and timing functions.
-*/
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
