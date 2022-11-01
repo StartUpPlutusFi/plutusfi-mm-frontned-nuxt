@@ -41,7 +41,10 @@ const showModal = () => {
             class="list-none absolute z-10 bg-gray-400 p-2 right-5 top-8 rounded-md"
           >
             <li
-              @click="showModal(); showMenuOptions = false;"
+              @click="
+                showModal();
+                showMenuOptions = false;
+              "
               class="whitespace-nowrap text-gray-700 hover:text-gray-900 cursor-pointer"
             >
               API Credentials
@@ -64,8 +67,29 @@ const showModal = () => {
         <auto-trader-card-bot v-for="n in 12" />
       </div>
     </div>
-    <register-api-key-side-modal />
+    <transition name="slide-fade">
+      <register-api-key-side-modal />
+    </transition>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+/*
+  Enter and leave animations can use different
+  durations and timing functions.
+*/
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+</style>
