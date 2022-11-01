@@ -1,8 +1,10 @@
 import API from "../api";
 import { useAuthStore } from "./../../storage/auth/auth";
-import { Exchange, CredentialForm } from "./types";
+import { ApiDetail, CredentialForm } from "./types";
 
-export const CreataApiCredentials = async (body: CredentialForm): Promise<any> => {
+export const CreataApiCredentials = async (
+  body: CredentialForm
+): Promise<any> => {
   const auth = useAuthStore();
 
   const { data } = await API.post("apikey/add", body, {
@@ -16,10 +18,10 @@ export const CreataApiCredentials = async (body: CredentialForm): Promise<any> =
   return data;
 };
 
-export const LoadExchanges = async (): Promise<Exchange[]> => {
+export const LoadApiCredentialList = async (): Promise<ApiDetail[]> => {
   const auth = useAuthStore();
 
-  const { data } = await API.get("/exchange/list", {
+  const { data } = await API.get("/apikey/list", {
     headers: {
       Authorization: `Bearer ${auth.getAccess}`,
     },

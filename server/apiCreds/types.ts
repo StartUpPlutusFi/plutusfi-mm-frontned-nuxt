@@ -5,11 +5,18 @@ export type Exchange = {
   updated_at: string;
 };
 
-
 export type CredentialForm = {
-    api_key: string;
-    api_secret: string;
-    exchange: number;
-    description?: string;
-    default: boolean;
-  };
+  api_key: string;
+  api_secret: string;
+  exchange: number;
+  description?: string;
+  default: boolean;
+};
+
+
+export type ApiDetail = {
+  id: number
+  description: string
+  default: boolean
+  exchange: number
+}
