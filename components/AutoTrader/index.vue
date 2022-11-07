@@ -46,7 +46,8 @@ onClickOutside(optionMenuRef, closeOptionMenu)
             </svg>
           </button>
           <ul
-            v-show="showMenuOptions"
+              ref="optionMenuRef"
+            v-show="showOptionsMenu"
             class="list-none absolute z-10 bg-gray-400 p-2 right-5 top-8 rounded-md"
           >
             <li
