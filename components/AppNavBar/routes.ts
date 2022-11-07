@@ -6,3 +6,5 @@ export const urlpatterns: Route[] = [
   { path: "/dashboard", text: "Dashboard", active: false },
   { path: "/exchange", text: "Exchange", active: false },
 ];
+
+export default {urlpatterns}
