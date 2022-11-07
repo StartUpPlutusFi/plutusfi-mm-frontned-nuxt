@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { LoadApiCredentialList } from "~~/server/apiCreds"
-import { ApiDetail } from "~~/server/apiCreds/types";
+import {ApiDetail} from "~~/server/apiCreds/types";
+import {useApiCredentials} from "~~/storage/apikeys";
 
-const apiCredentialList = ref<ApiDetail[]>([])
+const apiCredentialList = ref<ApiDetail[]>([]);
+const credentials = useApiCredentials()
+
+const deleteCredential = async (index: number) => {
+  credentials.DeleteCredential(index)
+};
 
 onBeforeMount(async () => {
-    const data = await LoadApiCredentialList()
-    apiCredentialList.value = data
-    
-})
+  await credentials.LoadCrendentials()
+});
 </script>
 
 <template>
