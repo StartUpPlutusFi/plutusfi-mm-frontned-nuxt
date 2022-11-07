@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { useModalApiCredential } from "~~/storage/modals/apikey";
+import {AutoTradeGrid} from "#components";
+import {ref} from "#imports";
+import {onClickOutside} from "@vueuse/core";
 
 const modal = useModalApiCredential();
-const showMenuOptions = ref<boolean>(false);
+const showOptionsMenu = ref<boolean>(false);
+const optionMenuRef = ref<HTMLElement>()
 const gridLayout = ref<HTMLSelectElement>();
 const changeLayout = () => {
   console.log(gridLayout.value.value);
@@ -11,6 +15,12 @@ const changeLayout = () => {
 const showModal = () => {
   modal.setShow(true);
 };
+
+const closeOptionMenu = () => {
+  showOptionsMenu.value = false
+}
+
+onClickOutside(optionMenuRef, closeOptionMenu)
 </script>
 <template>
   <div class="container mx-auto">
