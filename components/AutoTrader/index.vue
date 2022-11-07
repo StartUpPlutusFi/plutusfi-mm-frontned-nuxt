@@ -73,9 +73,7 @@ onClickOutside(optionMenuRef, closeOptionMenu)
           <option value="4">4 cols</option>
         </select>
       </div>
-      <div class="grid-auto-trader">
-        <auto-trader-card-bot v-for="n in 12" />
-      </div>
+        <auto-trade-grid />
     </div>
     <teleport to="body">
       <transition name="slide-fade">
