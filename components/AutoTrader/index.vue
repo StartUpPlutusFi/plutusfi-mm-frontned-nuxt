@@ -35,7 +35,7 @@ onClickOutside(optionMenuRef, closeOptionMenu)
       <div class="w-full flex justify-end">
         <div class="relative">
           <button
-            @click="showMenuOptions = !showMenuOptions"
+            @click="showOptionsMenu = !showOptionsMenu"
             class="text-gray-400 mr-4 hover:text-gray-100 transition-colors"
           >
             <svg width="32" height="32" viewBox="0 0 24 24">
