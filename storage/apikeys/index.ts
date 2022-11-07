@@ -1,4 +1,4 @@
-import {CredentialForm} from "/server/apiCreds/types";
+import {CredentialForm} from "~~/server/apiCreds/types";
 import {defineStore} from "pinia";
 import {CreataApiCredentials, DeleteApiCredential, LoadApiCredentialList,} from "~~/server/apiCreds";
 import {ApiDetail} from "~~/server/apiCreds/types";
