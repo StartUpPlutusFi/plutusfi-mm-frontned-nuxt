@@ -40,3 +40,15 @@ export const LoadApiCredentialList = async (): Promise<ApiDetail[]> => {
   });
   return data;
 };
+
+export const DeleteApiCredential = async (id: number): Promise<boolean> => {
+  const auth = useAuthStore();
+
+  const response = await API.delete(`/apikey/delete/${id}`, {
+    headers: {
+      Authorization: `Bearer ${auth.getAccess}`,
+    },
+  });
+
+  return response.status === 200;
+};
