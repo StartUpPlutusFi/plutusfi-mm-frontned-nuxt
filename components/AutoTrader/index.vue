@@ -52,7 +52,7 @@ onClickOutside(optionMenuRef, closeOptionMenu)
             <li
               @click="
                 showModal();
-                showMenuOptions = false;
+                closeOptionMenu()
               "
               class="whitespace-nowrap text-gray-700 hover:text-gray-900 cursor-pointer"
             >
