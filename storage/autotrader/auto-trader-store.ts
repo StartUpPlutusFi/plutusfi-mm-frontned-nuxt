@@ -1,5 +1,7 @@
 import {defineStore} from "pinia";
-import {AutoTraderList} from "~/server/autotrader/trader-api";
+import {AutoTraderList, CreateTradeBot} from "~/server/autotrader/trader-api";
+import {AutoTraderCreateForm} from "~/server/autotrader/interfaces";
+import {createToast} from "mosha-vue-toastify";
 
 export const useAutoTrader = defineStore("auto-trader", {
     state: () => {
@@ -16,6 +18,15 @@ export const useAutoTrader = defineStore("auto-trader", {
         async LoadTraders() {
             const data = await AutoTraderList()
             this.traderList = data
+        },
+
+        async CreateNewBot(body: AutoTraderCreateForm) {
+            try {
+                const data = await CreateTradeBot(body)
+                this.traderList.push(data)
+            }catch (e) {
+                createToast("Failure to create a new Auto Trader Bot.")
+            }
         }
     }
 })
