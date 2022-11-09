@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useModalApiCredential } from "~~/storage/modals/apikey";
+import {useModalApiCredential} from "~~/storage/modals/apikey";
 import {AutoTradeGrid} from "#components";
 import {ref} from "#imports";
 import {onClickOutside} from "@vueuse/core";
@@ -8,6 +8,13 @@ const modal = useModalApiCredential();
 const showOptionsMenu = ref<boolean>(false);
 const optionMenuRef = ref<HTMLElement>()
 const gridLayout = ref<HTMLSelectElement>();
+const showCreateAutoTraderModal = ref<boolean>(false)
+
+
+const closeCreateAutoTradeModal = () => {
+  showCreateAutoTraderModal.value = false
+}
+
 const changeLayout = () => {
   console.log(gridLayout.value.value);
 };
@@ -28,57 +35,60 @@ onClickOutside(optionMenuRef, closeOptionMenu)
       Auto Trader
     </h1>
     <div class="command-panel flex w-full justify-center gap-2 px-5">
-      <button class="btn">New bot</button>
+      <button @click="showCreateAutoTraderModal = !showCreateAutoTraderModal" class="btn">New bot</button>
       <button class="btn">stop all open orders</button>
     </div>
     <div class="content">
       <div class="w-full flex justify-end">
         <div class="relative">
           <button
-            @click="showOptionsMenu = !showOptionsMenu"
-            class="text-gray-400 mr-4 hover:text-gray-100 transition-colors"
+              @click="showOptionsMenu = !showOptionsMenu"
+              class="text-gray-400 mr-4 hover:text-gray-100 transition-colors"
           >
             <svg width="32" height="32" viewBox="0 0 24 24">
               <path
-                fill="currentColor"
-                d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
+                  fill="currentColor"
+                  d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"
               />
             </svg>
           </button>
           <ul
               ref="optionMenuRef"
-            v-show="showOptionsMenu"
-            class="list-none absolute z-10 bg-gray-400 p-2 right-5 top-8 rounded-md"
+              v-show="showOptionsMenu"
+              class="list-none absolute z-10 bg-gray-400 p-2 right-5 top-8 rounded-md"
           >
             <li
-              @click="
+                @click="
                 showModal();
                 closeOptionMenu()
               "
-              class="whitespace-nowrap text-gray-700 hover:text-gray-900 cursor-pointer"
+                class="whitespace-nowrap text-gray-700 hover:text-gray-900 cursor-pointer"
             >
               API Credentials
             </li>
           </ul>
         </div>
         <select
-          class="hidden"
-          ref="gridLayout"
-          @change="changeLayout"
-          name="gridlayout"
-          id="id_grid_layout"
+            class="hidden"
+            ref="gridLayout"
+            @change="changeLayout"
+            name="gridlayout"
+            id="id_grid_layout"
         >
           <option value="default">Auto</option>
           <option value="2">2 cols</option>
           <option value="4">4 cols</option>
         </select>
       </div>
-        <auto-trade-grid />
+      <auto-trade-grid/>
     </div>
     <teleport to="body">
       <transition name="slide-fade">
-        <register-api-key-side-modal />
+        <register-api-key-side-modal/>
       </transition>
+    </teleport>
+    <teleport to="body">
+      <create-auto-trader-modal v-if="showCreateAutoTraderModal" @close-modal="closeCreateAutoTradeModal"/>
     </teleport>
   </div>
 </template>
