@@ -12,15 +12,24 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="grid-auto-trader">
+  <transition-group tag="ul" class="grid-auto-trader" name="list">
     <auto-trader-card-bot
         v-for="trader in autoTrader.getTraderList"
         :name="trader.name"
         :description="trader.description"
     />
-  </div>
+  </transition-group>
 </template>
 
 <style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 
 </style>
