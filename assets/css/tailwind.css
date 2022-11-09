@@ -62,4 +62,12 @@
   .grid-auto-trader {
     @apply grow w-full grid gap-4 sm:grid-cols-2 xl:grid-cols-4 p-5 place-items-center
   }
+
+  .input-group {
+    @apply flex flex-col
+  }
+
+  .text-input {
+    @apply bg-gray-200 rounded outline-none py-1 pl-2 focus:bg-gray-400 focus:text-white transition-colors
+  }
 }
