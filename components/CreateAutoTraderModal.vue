@@ -74,6 +74,10 @@ const checkSideOption = () => {
   }
 }
 
+const setApiId = () => {
+  formData.value.api_key_id = apiId.value
+}
+
 </script>
 
 <template>
