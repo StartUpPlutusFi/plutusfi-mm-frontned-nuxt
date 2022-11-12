@@ -127,15 +127,15 @@ const setApiId = () => {
           <div>
             <div class="mb-2 input-group">
               <label for="ref_price">Reference price</label>
-              <input class="text-input" type="text" name="ref_price" v-model="formData.user_ref_price">
+              <input class="text-input" type="number" name="ref_price" v-model="formData.user_ref_price">
             </div>
             <div class="mb-2 input-group">
               <label for="candle">Candle</label>
-              <input class="text-input" type="text" name="candle" v-model="formData.trade_candle">
+              <input class="text-input" type="number" name="candle" v-model="formData.trade_candle">
             </div>
             <div class="mb-2 input-group">
               <label for="amount">Amount</label>
-              <input class="text-input" type="text" name="amount" v-model="formData.trade_amount">
+              <input class="text-input" type="number" name="amount" v-model="formData.trade_amount">
             </div>
           </div>
         </div>
