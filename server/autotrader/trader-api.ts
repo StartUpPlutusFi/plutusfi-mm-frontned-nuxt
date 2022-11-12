@@ -14,7 +14,7 @@ export const AutoTraderList = async (): Promise<AutoTraderConfig[]> => {
     return data
 }
 
-export const CreateTradeBot = async (body: AutoTraderCreateForm): Promise<AutoTraderConfig> => {
+export const CreateTradeBot = async (body: FormData): Promise<AutoTraderConfig> => {
     const auth = useAuthStore()
     const {data} = await API.post("/autotrade/add", body, {
         headers: {
