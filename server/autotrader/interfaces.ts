@@ -13,6 +13,7 @@ export interface AutoTraderCreateForm {
     name: string
     description: string
     api_key_id: number,
+    side: number,
     pair_token: string,
     user_ref_price: number,
     trade_candle: number,
