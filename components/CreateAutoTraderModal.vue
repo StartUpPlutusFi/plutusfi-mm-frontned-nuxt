@@ -4,10 +4,12 @@ import {AutoTraderCreateForm} from "../server/autotrader/interfaces";
 import {useApiCredentials} from "~/storage/apikeys";
 import {onClickOutside} from "@vueuse/core";
 import {Icon} from "@iconify/vue";
+import {useAutoTrader} from "~/storage/autotrader/auto-trader-store";
 
 
 const emit = defineEmits(['close-modal'])
 const credential = useApiCredentials();
+const autoTrader = useAutoTrader();
 
 onBeforeMount(() => {
   credential.LoadCrendentials()
