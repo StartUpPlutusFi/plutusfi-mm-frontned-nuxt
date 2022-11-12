@@ -42,8 +42,8 @@ const resetForm = () => {
   }
 }
 const emitClose = () => {
-
   emit('close-modal')
+  resetForm()
 }
 onClickOutside(formRef, emitClose)
 
