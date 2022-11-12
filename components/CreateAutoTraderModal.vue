@@ -58,6 +58,18 @@ const mountBody = (): FormData => {
 const createBot = async () => {
   console.log("create bot", formData.value)
 }
+
+const checkSideOption = () => {
+  sideChecked.value = !sideChecked.value
+  if (sideChecked.value) {
+    // 1 represent side action to Buy orders
+    formData.value.side = 1
+  } else {
+    // 0 represent side action to Sell orders
+    formData.value.side = 0
+  }
+}
+
 </script>
 
 <template>
