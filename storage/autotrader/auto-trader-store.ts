@@ -20,12 +20,15 @@ export const useAutoTrader = defineStore("auto-trader", {
             this.traderList = data
         },
 
-        async CreateNewBot(body: AutoTraderCreateForm) {
+        async CreateNewBot(body: FormData): Promise<boolean> {
             try {
                 const data = await CreateTradeBot(body)
                 this.traderList.push(data)
+                return true
             }catch (e) {
+                console.log("error", e)
                 createToast("Failure to create a new Auto Trader Bot.")
+                return false
             }
         }
     }
