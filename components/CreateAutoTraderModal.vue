@@ -78,7 +78,7 @@ const checkSideOption = () => {
       <div
           @click="emitClose"
           class="text-black absolute right-2 top-1 text-xl hover:bg-gray-500 rounded-full hover:text-gray-200 hover:cursor-pointer">
-        <Icon icon="ic:baseline-close" />
+        <Icon icon="ic:baseline-close"/>
       </div>
       <div>
         <h1 class="text-3xl ml-4 mt-4">Auto Trader Creation Form</h1>
