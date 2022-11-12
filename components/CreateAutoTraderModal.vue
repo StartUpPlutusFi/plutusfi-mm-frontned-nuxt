@@ -57,7 +57,10 @@ const mountBody = (): FormData => {
 }
 
 const createBot = async () => {
-  console.log("create bot", formData.value)
+  const body = mountBody()
+  if (await autoTrader.CreateNewBot(body)) {
+    emitClose()
+  }
 }
 
 const checkSideOption = () => {
