@@ -47,7 +47,15 @@ const emitClose = () => {
 }
 onClickOutside(formRef, emitClose)
 
-const createBot = () => {
+const mountBody = (): FormData => {
+  const body = new FormData()
+  for (const key in formData.value) {
+    body.append(key, formData.value[key])
+  }
+  return body
+}
+
+const createBot = async () => {
   console.log("create bot", formData.value)
 }
 </script>
