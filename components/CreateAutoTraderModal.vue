@@ -27,7 +27,8 @@ const formData = ref<AutoTraderCreateForm>({
 })
 
 const formRef = ref<HTMLDivElement>()
-const selectApiRef = ref<HTMLSelectElement>()
+const sideChecked = ref<boolean>(false)
+const apiId = ref<number>()
 
 const resetForm = () => {
   formData.value = {
