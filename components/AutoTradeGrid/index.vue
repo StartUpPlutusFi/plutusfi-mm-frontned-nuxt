@@ -7,7 +7,6 @@ const autoTrader = useAutoTrader()
 
 onBeforeMount(async () => {
   await autoTrader.LoadTraders()
-  console.log(autoTrader.getTraderList)
 })
 </script>
 
