@@ -157,7 +157,7 @@ const setApiId = () => {
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary m-2">Create</button>
+        <button type="submit" class="btn btn-primary m-2 w-full sm:w-fit">Create</button>
       </form>
     </div>
   </div>
