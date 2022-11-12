@@ -4,15 +4,22 @@ import {ref} from "#imports";
 import { Icon } from "@iconify/vue";
 
 const props = defineProps({
+  index: {type: Number, required: true},
   name: {type: String, required: true},
   description: {type: String, required: true}
 })
+
+const emit = defineEmits(["delete"])
 
 const showOptions = ref<boolean>(false)
 const optionRef = ref<HTMLDivElement>()
 
 const CloseOptionsMenu = () => {
   showOptions.value = false
+}
+
+const emitDelete = () => {
+  emit("delete", props.index)
 }
 
 onClickOutside(optionRef, CloseOptionsMenu)
@@ -26,7 +33,9 @@ onClickOutside(optionRef, CloseOptionsMenu)
       <ul>
         <li class="hover:bg-gray-500 hover:text-white cursor-pointer px-2 rounded-t">Info</li>
         <li>Settings</li>
-        <li>Delete</li>
+        <li
+            class="hover:bg-gray-500 hover:text-white cursor-pointer px-2 rounded-t"
+            @click="emitDelete">Delete</li>
       </ul>
     </div>
     <div class="mr-2">

@@ -8,14 +8,21 @@ const autoTrader = useAutoTrader()
 onBeforeMount(async () => {
   await autoTrader.LoadTraders()
 })
+
+const DeleteBot = async (index: number) => {
+  await autoTrader.DeleteBot(index)
+}
+
 </script>
 
 <template>
   <transition-group tag="ul" class="grid-auto-trader" name="list">
     <auto-trader-card-bot
-        v-for="trader in autoTrader.getTraderList"
+        v-for="(trader, index) in autoTrader.getTraderList"
+        :index="index"
         :name="trader.name"
         :description="trader.description"
+        @delete="DeleteBot"
     />
   </transition-group>
 </template>
