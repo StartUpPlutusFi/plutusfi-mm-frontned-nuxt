@@ -137,6 +137,24 @@ const setApiId = () => {
               <label for="amount">Amount</label>
               <input class="text-input" type="number" name="amount" v-model="formData.trade_amount">
             </div>
+            <div class="mb-2 mt-6 flex items-center gap-3">
+              <label class="text-red-500" for="amount">Sell</label>
+                <div class="switch-wrapper">
+                  <input
+                      :checked="formData.side === 0 ? false : true"
+                      class="text-input"
+                      type="checkbox"
+                      name="side"/>
+                  <div class="switch-container">
+                    <div
+                        @click="checkSideOption"
+                        class="switch-overlay"></div>
+                    <div class="switch-indicator"></div>
+                  </div>
+                </div>
+
+              <label class="text-blue-500" for="amount">Buy</label>
+            </div>
           </div>
         </div>
         <button type="submit" class="btn btn-primary m-2">Create</button>
@@ -145,8 +163,51 @@ const setApiId = () => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .overlay {
   background-color: #000000aa;
 }
+
+.switch-wrapper {
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"]:checked + .switch-container .switch-indicator {
+    right: 2px;
+    background-color: #31a1e0;
+  }
+
+  .switch-container {
+    width: 40px;
+    height: 20px;
+    background-color: #e3e3e3;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+
+    .switch-overlay {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 20;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .switch-indicator {
+      width: 15px;
+      height: 15px;
+      background-color: #e12525;
+      position: absolute;
+      border-radius: 50%;
+      right: 58%;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
 </style>
