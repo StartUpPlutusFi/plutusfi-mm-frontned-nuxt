@@ -139,19 +139,19 @@ const setApiId = () => {
             </div>
             <div class="mb-2 mt-6 flex items-center gap-3">
               <label class="text-red-500" for="amount">Sell</label>
-                <div class="switch-wrapper">
-                  <input
-                      :checked="formData.side === 0 ? false : true"
-                      class="text-input"
-                      type="checkbox"
-                      name="side"/>
-                  <div class="switch-container">
-                    <div
-                        @click="checkSideOption"
-                        class="switch-overlay"></div>
-                    <div class="switch-indicator"></div>
-                  </div>
+              <div class="switch-wrapper">
+                <input
+                    :checked="formData.side === 0 ? false : true"
+                    class="text-input"
+                    type="checkbox"
+                    name="side"/>
+                <div class="switch-container">
+                  <div
+                      @click="checkSideOption"
+                      class="switch-overlay"></div>
+                  <div class="switch-indicator"></div>
                 </div>
+              </div>
 
               <label class="text-blue-500" for="amount">Buy</label>
             </div>
