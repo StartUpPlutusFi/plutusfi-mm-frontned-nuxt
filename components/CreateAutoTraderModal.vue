@@ -110,7 +110,7 @@ const setApiId = () => {
             </div>
             <div class="mb-2 input-group">
               <label for="api_credential">API credential</label>
-              <select ref="selectApiRef" name="api_credential">
+              <select name="api_credential" v-model="apiId" @change="setApiId">
                 <option value="0">---</option>
                 <option
                     v-for="cred in credential.getList"
