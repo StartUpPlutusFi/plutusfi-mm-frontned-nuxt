@@ -16,15 +16,22 @@ const DeleteBot = async (index: number) => {
 </script>
 
 <template>
-  <transition-group tag="ul" class="grid-auto-trader" name="list">
-    <auto-trader-card-bot
-        v-for="(trader, index) in autoTrader.getTraderList"
-        :index="index"
-        :name="trader.name"
-        :description="trader.description"
-        @delete="DeleteBot"
-    />
-  </transition-group>
+  <Suspense>
+  <template #default>
+    <transition-group tag="ul" class="grid-auto-trader" name="list">
+      <auto-trader-card-bot
+          v-for="(trader, index) in autoTrader.getTraderList"
+          :index="index"
+          :name="trader.name"
+          :description="trader.description"
+          @delete="DeleteBot"
+      />
+    </transition-group>
+  </template>
+    <template #fallback>
+      <p class="text-display-1">Loading</p>
+    </template>
+  </Suspense>
 </template>
 
 <style scoped>
