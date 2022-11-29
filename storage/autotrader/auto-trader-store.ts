@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
-import {AutoTraderList, CreateTradeBot, DeleteTradeBot} from "~/server/autotrader/trader-api";
-import {AutoTraderConfig, AutoTraderCreateForm} from "~/server/autotrader/interfaces";
+import {AutoTraderList, CreateTradeBot, DeleteTradeBot, GetTradeBotData} from "~/server/autotrader/trader-api";
+import {AutoTraderConfig} from "~/server/autotrader/interfaces";
 import {createToast} from "mosha-vue-toastify";
 
 export const useAutoTrader = defineStore("auto-trader", {
@@ -16,8 +16,18 @@ export const useAutoTrader = defineStore("auto-trader", {
 
     actions: {
         async LoadTraders() {
-            const data = await AutoTraderList()
-            this.traderList = data
+            this.traderList = await AutoTraderList()
+        },
+        async LoadConfiguration(id: number): Promise<AutoTraderConfig> {
+            try {
+                return await GetTradeBotData(id)
+            } catch (e) {
+                createToast("There was a problem loading the bot's information.", {
+                    type: "danger",
+                    position: "top-center",
+                })
+                console.error(e)
+            }
         },
         async CreateNewBot(body: FormData): Promise<boolean> {
             try {
@@ -31,7 +41,7 @@ export const useAutoTrader = defineStore("auto-trader", {
         },
         async DeleteBot(index: number): Promise<boolean> {
             try {
-                const response = await DeleteTradeBot(this.traderList[index].id)
+                await DeleteTradeBot(this.traderList[index].id);
                 this.traderList.splice(index, 1)
                 return true
             } catch (e) {
