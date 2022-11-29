@@ -1,5 +1,5 @@
 import {useAuthStore} from "~/storage/auth/auth";
-import {AutoTraderConfig} from "~/server/autotrader/interfaces";
+import {AutoTraderConfig, AutoTraderCreateForm} from "~/server/autotrader/interfaces";
 import API from "~/server/api";
 import {AxiosResponse} from "axios";
 
@@ -46,4 +46,16 @@ export const GetTradeBotData = async (id: number): Promise<AutoTraderConfig> => 
     })
 
     return data
+}
+
+export const UpdateTradeBotSettings = async (botId: number, formData: AutoTraderCreateForm): Promise<boolean> => {
+    const auth = useAuthStore()
+    const response = await API.put(`/autotrade/update/${botId}`, formData, {
+        headers: {
+            Authorization: `Bearer ${auth.getAccess}`,
+            "Content-Type": "application/json",
+        }
+    })
+
+    return response.status === 200
 }

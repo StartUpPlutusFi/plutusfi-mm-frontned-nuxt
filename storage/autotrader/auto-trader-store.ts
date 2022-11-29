@@ -1,6 +1,12 @@
 import {defineStore} from "pinia";
-import {AutoTraderList, CreateTradeBot, DeleteTradeBot, GetTradeBotData} from "~/server/autotrader/trader-api";
-import {AutoTraderConfig} from "~/server/autotrader/interfaces";
+import {
+    AutoTraderList,
+    CreateTradeBot,
+    DeleteTradeBot,
+    GetTradeBotData,
+    UpdateTradeBotSettings
+} from "~/server/autotrader/trader-api";
+import {AutoTraderConfig, AutoTraderCreateForm} from "~/server/autotrader/interfaces";
 import {createToast} from "mosha-vue-toastify";
 
 export const useAutoTrader = defineStore("auto-trader", {
@@ -49,6 +55,20 @@ export const useAutoTrader = defineStore("auto-trader", {
                     position: "top-center",
                     type: "danger"
                 })
+                return false
+            }
+        },
+
+        async UpdateBotSettings(botid: number, formData: AutoTraderCreateForm): Promise<boolean> {
+            try {
+                return await UpdateTradeBotSettings(botid, formData)
+            } catch (e) {
+                console.error(e)
+                createToast("An error occurred while updating the robo", {
+                    type: "danger",
+                    position: "top-center"
+                })
+
                 return false
             }
         }

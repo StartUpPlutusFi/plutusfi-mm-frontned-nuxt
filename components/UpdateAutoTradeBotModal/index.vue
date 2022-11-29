@@ -3,7 +3,7 @@ import {Icon} from "@iconify/vue";
 import {onBeforeMount} from "vue";
 import {onClickOutside} from "@vueuse/core";
 import {useAutoTrader} from "~/storage/autotrader/auto-trader-store";
-import {AutoTraderConfig} from "~/server/autotrader/interfaces";
+import {AutoTraderConfig, AutoTraderCreateForm} from "~/server/autotrader/interfaces";
 import {createToast} from "mosha-vue-toastify";
 
 const props = defineProps(["id"])
@@ -27,6 +27,28 @@ const loadForm = async () => {
 
 }
 
+const updateBotSettings = async () => {
+  const updatedForm: AutoTraderCreateForm = {
+    name: formData.value.name,
+    description: formData.value.description,
+    api_key_id: formData.value.api_key,
+    side: formData.value.side,
+    pair_token: formData.value.pair_token,
+    trade_amount: formData.value.trade_amount,
+    trade_candle: formData.value.trade_candle,
+    user_ref_price: formData.value.user_ref_price
+  }
+
+  let status: boolean = await autoTrade.UpdateBotSettings(props.id, updatedForm)
+  if (status) {
+    createToast("successfully updated!", {
+      type: "success",
+      position: "top-center"
+    })
+  }
+  emit("close-modal")
+}
+
 onBeforeMount(async () => {
   if (props.id == 0 || props.id == undefined) {
     emit("close-modal")
@@ -46,57 +68,64 @@ onClickOutside(refModal, () => {
   <div
       class="w-full h-screen bg-black bg-opacity-30 backdrop-blur z-20 top-0 left-0 absolute flex justify-center items-center">
     <transition>
-      <form v-if="!isLoading" ref="refModal" class="bg-gray-100 p-5 flex gap-5 relative">
-        <div class="absolute right-3 top-3">
-          <button
-              @click.prevent="emit('close-modal')"
-              class="text-gray-400 hover:text-gray-800 transition-colors">
-            <Icon icon="ic:baseline-close"/>
-          </button>
-        </div>
-        <div>
-          <div class="mb-3 input-group">
-            <label for="name">Project name</label>
-            <input type="text" name="name" class="text-input" v-model="formData.name">
+      <form v-if="!isLoading" ref="refModal" class="bg-gray-100 p-5 flex flex-col relative">
+        <div class="flex gap-5">
+          <div class="absolute right-3 top-3">
+            <button
+                @click.prevent="emit('close-modal')"
+                class="text-gray-400 hover:text-gray-800 transition-colors">
+              <Icon icon="ic:baseline-close"/>
+            </button>
           </div>
-          <div class="mb-3 input-group">
-            <label for="description">Description</label>
-            <input type="text" name="description" class="text-input" v-model="formData.description">
-          </div>
-          <div class="mb-3 input-group">
-            <label for="side">Side</label>
-            <div>
-              <input type="radio" name="side" value="0" class="mr-2" v-model="formData.side">
-              <label for="side">Sell</label>
+          <div>
+            <div class="mb-3 input-group">
+              <label for="name">Project name</label>
+              <input type="text" name="name" class="text-input" v-model="formData.name">
             </div>
-            <div>
-              <input type="radio" name="side" value="1" class="mr-2" v-model="formData.side">
-              <label for="side">Buy</label>
+            <div class="mb-3 input-group">
+              <label for="description">Description</label>
+              <input type="text" name="description" class="text-input" v-model="formData.description">
             </div>
-            <div>
-              <input type="radio" name="side" value="2" class="mr-2" v-model="formData.side">
-              <label for="side">Random</label>
+            <div class="mb-3 input-group">
+              <label for="side">Side</label>
+              <div>
+                <input type="radio" name="side" value="0" class="mr-2" v-model="formData.side">
+                <label for="side">Sell</label>
+              </div>
+              <div>
+                <input type="radio" name="side" value="1" class="mr-2" v-model="formData.side">
+                <label for="side">Buy</label>
+              </div>
+              <div>
+                <input type="radio" name="side" value="2" class="mr-2" v-model="formData.side">
+                <label for="side">Random</label>
+              </div>
+            </div>
+            <div class="mb-3 input-group">
+              <label for="token">Token</label>
+              <input type="text" name="token" class="text-input" v-model="formData.pair_token">
             </div>
           </div>
-          <div class="mb-3 input-group">
-            <label for="token">Token</label>
-            <input type="text" name="token" class="text-input" v-model="formData.pair_token">
+          <div>
+            <div class="mb-3 input-group">
+              <label for="ref_price">Reference price</label>
+              <input type="text" name="ref_price" class="text-input" v-model="formData.user_ref_price">
+            </div>
+            <div class="mb-3 input-group">
+              <label for="candle">Candle</label>
+              <input type="text" name="candle" id="" class="text-input" v-model="formData.trade_candle">
+            </div>
+            <div class="mb-3 input-group">
+              <label for="amount">Amount</label>
+              <input type="text" name="amount" class="text-input" v-model="formData.trade_amount">
+            </div>
           </div>
         </div>
-        <div>
-          <div class="mb-3 input-group">
-            <label for="ref_price">Reference price</label>
-            <input type="text" name="ref_price" class="text-input" v-model="formData.user_ref_price">
-          </div>
-          <div class="mb-3 input-group">
-            <label for="candle">Candle</label>
-            <input type="text" name="candle" id="" class="text-input" v-model="formData.trade_candle">
-          </div>
-          <div class="mb-3 input-group">
-            <label for="amount">Amount</label>
-            <input type="text" name="amount" class="text-input" v-model="formData.trade_amount">
-          </div>
-        </div>
+
+        <button
+            class="btn btn-primary"
+            type="submit"
+            @click.prevent="updateBotSettings">Save</button>
       </form>
       <div v-else>
         <div class="lds-facebook">
