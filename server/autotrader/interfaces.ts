@@ -25,3 +25,7 @@ export interface AutoTraderCreateForm {
     trade_candle: number,
     trade_amount: number
 }
+
+export interface ControlStateResponse {
+    state: string
+}
