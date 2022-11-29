@@ -4,13 +4,13 @@ import {ref} from "#imports";
 import { Icon } from "@iconify/vue";
 
 const props = defineProps({
+  id: {type: Number, required: true},
   index: {type: Number, required: true},
   name: {type: String, required: true},
   description: {type: String, required: true}
 })
 
-const emit = defineEmits(["delete"])
-
+const emit = defineEmits(["delete", "open-update"])
 const showOptions = ref<boolean>(false)
 const optionRef = ref<HTMLDivElement>()
 
@@ -20,6 +20,10 @@ const CloseOptionsMenu = () => {
 
 const emitDelete = () => {
   emit("delete", props.index)
+}
+
+const emitOpen = () => {
+  emit("open-update", props.id)
 }
 
 onClickOutside(optionRef, CloseOptionsMenu)
@@ -32,7 +36,10 @@ onClickOutside(optionRef, CloseOptionsMenu)
     <div v-if="showOptions" ref="optionRef" class="min-h-fit absolute right-3 top-7 bg-gray-300 rounded">
       <ul>
         <li class="hover:bg-gray-500 hover:text-white cursor-pointer px-2 py-1 text-center rounded-t">Info</li>
-<!--        <li>Settings</li>-->
+        <li
+            class="hover:bg-gray-500 hover:text-white cursor-pointer px-2 py-1 text-center"
+            @click="emit('open-update', props.id)"
+        >Settings</li>
         <li
             class="hover:bg-gray-500 hover:text-white cursor-pointer px-2 py-1 text-center rounded-b"
             @click="emitDelete">Delete</li>
