@@ -1,7 +1,8 @@
 import {useAuthStore} from "~/storage/auth/auth";
-import {AutoTraderConfig, AutoTraderCreateForm} from "~/server/autotrader/interfaces";
+import {AutoTraderConfig, AutoTraderCreateForm, ControlStateResponse} from "~/server/autotrader/interfaces";
 import API from "~/server/api";
 import {AxiosResponse} from "axios";
+import {ControlState} from "~/server/autotrader/types";
 
 export const AutoTraderList = async (): Promise<AutoTraderConfig[]> => {
     const auth = useAuthStore()
@@ -58,4 +59,31 @@ export const UpdateTradeBotSettings = async (botId: number, formData: AutoTrader
     })
 
     return response.status === 200
+}
+
+export const GetStatusAutoTradeBot = async (id: number): Promise<string> => {
+    const auth = useAuthStore()
+    const {data} = await API.get(`/autotrade/status/${id}`, {
+        headers: {
+            Authorization: `Bearer ${auth.getAccess}`,
+            "Content-Type": "application/json",
+        }
+    })
+
+    return data
+}
+
+export const ControlAutoTradeBot = async (id: number, state: ControlState): Promise<ControlStateResponse> => {
+    const auth = useAuthStore()
+    const {data} = await API.post(`/autotrade/ctrl/${id}`, {
+            "status": state
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${auth.getAccess}`,
+                "Content-Type": "application/json",
+            }
+        })
+
+    return data
 }
