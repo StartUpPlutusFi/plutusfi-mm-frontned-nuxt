@@ -31,6 +31,16 @@
     @apply text-gray-200;
   }
 
+  .btn-secondary {
+    background: #ef4343;
+    @apply text-gray-400;
+  }
+
+  .btn-secondary:hover {
+    background: #f10b0b;
+    @apply text-gray-200;
+  }
+
   .btn-expand {
     @apply w-full
   }
