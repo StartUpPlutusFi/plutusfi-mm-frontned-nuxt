@@ -88,7 +88,7 @@ const overlayClose = (e: Event) => {
   <transition name="slide-fade">
     <div
         v-if="modal.isShow"
-        class="overlay min-h-screen w-full top-0 left-0 fixed z-10"
+        class="overlay min-h-screen backdrop-blur w-full top-0 left-0 fixed z-10"
         @click="overlayClose"
     >
       <div

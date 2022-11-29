@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onBeforeMount, ref} from 'vue'
-import {AutoTraderCreateForm} from "../server/autotrader/interfaces";
+import {AutoTraderCreateForm} from "~/server/autotrader/interfaces";
 import {useApiCredentials} from "~/storage/apikeys";
 import {onClickOutside} from "@vueuse/core";
 import {Icon} from "@iconify/vue";
@@ -81,7 +81,7 @@ const setApiId = () => {
 </script>
 
 <template>
-  <div class="overlay w-full h-screen absolute top-0 left-0 z-30 flex items-center justify-center">
+  <div class="overlay w-full h-screen backdrop-blur absolute top-0 left-0 z-30 flex items-center justify-center">
     <div class="w-full sm:w-fit h-screen sm:h-fit bg-gray-100 relative">
       <div
           @click="emitClose"
@@ -131,29 +131,26 @@ const setApiId = () => {
             </div>
             <div class="mb-2 input-group">
               <label for="candle">Candle</label>
-              <input class="text-input" type="number" name="candle" v-model="formData.trade_candle">
+              <input class="text-input" type="text" name="candle" v-model="formData.trade_candle">
             </div>
             <div class="mb-2 input-group">
               <label for="amount">Amount</label>
               <input class="text-input" type="number" name="amount" v-model="formData.trade_amount">
             </div>
-            <div class="mb-2 mt-6 flex items-center gap-3">
-              <label class="text-red-500" for="amount">Sell</label>
-              <div class="switch-wrapper">
-                <input
-                    :checked="formData.side === 0 ? false : true"
-                    class="text-input"
-                    type="checkbox"
-                    name="side"/>
-                <div class="switch-container">
-                  <div
-                      @click="checkSideOption"
-                      class="switch-overlay"></div>
-                  <div class="switch-indicator"></div>
-                </div>
+            <div class="mb-2 mt-6 flex flex-col">
+              <span>Side</span>
+              <div>
+                <input type="radio" name="side" value="0" class="mr-2" v-model="formData.side">
+                <label for="side">Sell</label>
               </div>
-
-              <label class="text-blue-500" for="amount">Buy</label>
+              <div>
+                <input type="radio" name="side" value="1" class="mr-2" v-model="formData.side">
+                <label for="side">Buy</label>
+              </div>
+              <div>
+                <input type="radio" name="side" value="2" class="mr-2" v-model="formData.side">
+                <label for="side">Random</label>
+              </div>
             </div>
           </div>
         </div>
