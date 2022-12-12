@@ -36,7 +36,6 @@ onClickOutside(optionMenuRef, closeOptionMenu)
     </h1>
     <div class="command-panel flex w-full justify-center gap-2 px-5">
       <button @click="showCreateAutoTraderModal = !showCreateAutoTraderModal" class="btn">New bot</button>
-      <button class="btn">stop all open orders</button>
     </div>
     <div class="content">
       <div class="w-full flex justify-end">
