@@ -61,7 +61,6 @@ const HandleCreateExecution = async () => {
                 v-model="formData.name"
             >
           </div>
-
           <div class="input-group">
             <label for="token">Token</label>
             <input
@@ -117,7 +116,6 @@ const HandleCreateExecution = async () => {
           </div>
         </div>
       </div>
-
       <button @click.prevent="HandleCreateExecution()" class="btn btn-primary w-full">Create</button>
     </form>
   </div>
