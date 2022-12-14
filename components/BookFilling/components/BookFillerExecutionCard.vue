@@ -20,10 +20,13 @@ const emit = defineEmits(["detail"])
     <p>
       <small>Execution at: {{ convertStringToDate(props.data.created_at).toDateString() }}</small>
     </p>
-    <div class="flex justify-end">
+    <div class="flex justify-end gap-2">
       <small
           @click="emit('detail', props.index)"
           class="text-gray-400 hover:text-gray-50 cursor-pointer">detail</small>
+      <small
+          class="text-gray-400 hover:text-gray-50 cursor-pointer"
+      >control</small>
     </div>
   </div>
 </template>
