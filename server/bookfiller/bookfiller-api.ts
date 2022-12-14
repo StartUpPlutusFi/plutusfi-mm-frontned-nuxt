@@ -25,3 +25,15 @@ export const CreateExecution = async (creationData: ExecutionFormBookFiller): Pr
 
     return data
 }
+
+export const UpdateExecutionSettings = async (id: number, updatedData: ExecutionFormBookFiller): Promise<ResponseCreateExecutionBookfiller> => {
+    const auth = useAuthStore()
+    const {data} = await API.put(`/bookfiller/update/${id}`, updatedData,{
+        headers: {
+            Authorization: `Bearer ${auth.getAccess}`,
+            "Content-Type": "application/json",
+        }
+    })
+
+    return data
+}
